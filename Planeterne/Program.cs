@@ -13,7 +13,6 @@
             Planet neptun = new Planet("Neptun", 49244, 16.1, 14, 30.07, -201);
             Planet pluto = new Planet("Pluto", 2376, 153.3, 5, 39.48, -229);
 
-            //************************************************************************************************
             //creating a list "planets" and adding the Planet objects to it
             List<Planet> planets = new List<Planet>();
             planets.Add(merkur);
@@ -39,13 +38,11 @@
             Planet venus = new Planet("Venus", 12104, 5832.5, 0, 0.72, 462);
             planets.Insert(1, venus);
 
-            Console.WriteLine("venus index: " + planets.IndexOf(venus));
+            Console.WriteLine("venus index: " + planets.IndexOf(venus)); //printing indexes of the first 3 planets to check that venus is inserted correctly
             Console.WriteLine("merkur index: " + planets.IndexOf(merkur));
             Console.WriteLine("earth index: " + planets.IndexOf(earth));
 
-            //***********************************************************************************************************
             //removing pluto
-
             foreach (Planet planet in planets)
             {
                 if (planet.Equals(pluto))
@@ -56,44 +53,58 @@
             }
 
             //checking if Planet with name="pluto" exists in the list "planets"
-            Console.WriteLine(planets.Exists(x => x.Name == "Pluto"));
+            Console.WriteLine("Pluto is in the list: " + planets.Exists(x => x.Name == "Pluto"));
 
             
-            //***********************************************************************************************************
             //adding pluto again
             planets.Insert(8, pluto);
-            Console.WriteLine(planets.Exists(x => x.Name == "Pluto"));  //checking that pluto is back in the list
+            Console.WriteLine("Pluto is back in the list: " + planets.Exists(x => x.Name == "Pluto"));  //checking that pluto is back in the list
 
 
-            //***********************************************************************************************************
+          
             //counting items in list "planets" 
             Console.WriteLine(planets.Count);
 
-            //*************************************************************************************************************
+
             //Creating a new list, planetSubZero, and using LINQ to add items from the list "planets" with subzero temperatures
             List<Planet> planetsSubZero = new List<Planet>();
-            planetsSubZero.AddRange(planets.Where(p => p.SurfaceTemp < 0));
+            planetsSubZero.AddRange(planets.Where(p => p.SurfaceTemp < 0)); //adding planets using LINQ
 
-            Console.ForegroundColor = ConsoleColor.DarkYellow;  //checkng the filtered planets
+            List<Planet> psubZero = new List<Planet>(); 
+            foreach(Planet p in planets)                                    //adding planets using foreach
+            {
+                if (p.SurfaceTemp < 0)
+                {
+                    psubZero.Add(p);
+                }
+            }
+            
+            foreach(Planet p in psubZero)                                  //printing the list of subzero planets
+            {           
+                Console.WriteLine(p + "\n");
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;  //printing the new list with the selected planets in it
             foreach (Planet planet in planetsSubZero)
             {
                 Console.WriteLine(planet + "\n");
             }
             Console.ResetColor();
 
-            //*************************************************************************************************************
-            //
-            List<Planet> planets1000to5000dm = new List<Planet>();
-            planets1000to5000dm.AddRange(planets.Where(p => p.Diameter > 10000 && p.Diameter < 50000));
+            //Creating a new list "planeets10000to50000dm" and using linQ to add items from "planets" with diameters between 10- and 50.000
+            List<Planet> planets10000to50000dm = new List<Planet>();
+            planets10000to50000dm.AddRange(planets.Where(p => p.Diameter > 10000 && p.Diameter < 50000));
 
-            Console.ForegroundColor = ConsoleColor.Red;  //checking the filtered planets
-            foreach (Planet planet in planets1000to5000dm)
+            Console.ForegroundColor = ConsoleColor.Red;  //printing the new list with selected planets in it
+            foreach (Planet planet in planets10000to50000dm)
             {
                 Console.WriteLine(planet + "\n");
             }
             Console.ResetColor();
 
-
+            //clearing the list and checking that its empty by counting the items.
+            planets10000to50000dm.Clear();
+            Console.WriteLine("number of planets in the list planets10000to50000: "+planets10000to50000dm.Count);
         }
     }
 }

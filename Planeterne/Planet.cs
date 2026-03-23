@@ -24,7 +24,7 @@ namespace Planeterne
        
         public override string ToString()
         {
-            return $"Name: {Name} \nDiameter: {Diameter}km \nRotation Period: {RotationPeriod} \nNumber of Moons: {Moons} \nDistance From Sun: {DistanceSun} \nSurface Temperature: {SurfaceTemp}°C";
+            return $"Name: {Name} \nDiameter: {Diameter}km \nRotation Period: {RotationPeriod}timer \nNumber of Moons: {Moons} \nDistance From Sun: {DistanceSun}km \nSurface Temperature: {SurfaceTemp}°C";
         }
     }
 }
